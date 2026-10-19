@@ -1,4 +1,4 @@
-<Window xmlns="https://github.com/avaloniaui"
+﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -23,6 +23,8 @@
 				<Button Content="Врачи" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15"  FontWeight="Bold" BorderBrush="#e65100" Click="BtnDoctors_Click"></Button>
 				<Button Content="Расширенная аналитика" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15"  FontWeight="Bold" BorderBrush="#e65100" Click="BtnHeadAdvancedAnalytics_Click"></Button>
 				<Button Content="Оборудование" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15" FontWeight="Bold" BorderBrush="#e65100" Click="BtnEquipment_Click"/>
+				<Button Content="Медицинские отделения" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15"  FontWeight="Bold" BorderBrush="#e65100" Click="BtnHeadDepartments_Click"></Button>
+				<Button Content="Обращения" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15" FontWeight="Bold" BorderBrush="#e65100" Click="BtnAppeals_Click"/>
 			</StackPanel>
 		</Border>
 		<ContentControl x:Name="MainContentControl" Grid.Row="2" Margin="20"/>

@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EduPr.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace EduPr.Data;
 
@@ -16,50 +17,31 @@ public partial class AppDbContext : DbContext
     }
 
     public virtual DbSet<Appointment> Appointments { get; set; }
-
     public virtual DbSet<AppointmentStatus> AppointmentStatuses { get; set; }
-
     public virtual DbSet<Cabinet> Cabinets { get; set; }
-
     public virtual DbSet<Department> Departments { get; set; }
-
     public virtual DbSet<Doctor> Doctors { get; set; }
-
     public virtual DbSet<DoctorSchedule> DoctorSchedules { get; set; }
-
     public virtual DbSet<ExaminationResult> ExaminationResults { get; set; }
-
     public virtual DbSet<Invoice> Invoices { get; set; }
-
     public virtual DbSet<LabResearch> LabResearches { get; set; }
-
     public virtual DbSet<MedicalCard> MedicalCards { get; set; }
-
     public virtual DbSet<Medication> Medications { get; set; }
-
     public virtual DbSet<MedicationPrescription> MedicationPrescriptions { get; set; }
-
     public virtual DbSet<Patient> Patients { get; set; }
-
     public virtual DbSet<PaymentStatus> PaymentStatuses { get; set; }
-
     public virtual DbSet<PaymentType> PaymentTypes { get; set; }
-
     public virtual DbSet<ResearchReferral> ResearchReferrals { get; set; }
-
     public virtual DbSet<Review> Reviews { get; set; }
-
     public virtual DbSet<Role> Roles { get; set; }
-
     public virtual DbSet<Service> Services { get; set; }
-
     public virtual DbSet<ServiceType> ServiceTypes { get; set; }
-
     public virtual DbSet<SpecialistSchedule> SpecialistSchedules { get; set; }
-
     public virtual DbSet<Specialization> Specializations { get; set; }
-
     public virtual DbSet<User> Users { get; set; }
+
+
+    public virtual DbSet<Supplier> Suppliers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -70,9 +52,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Appointment>(entity =>
         {
             entity.HasKey(e => e.IdAppointment).HasName("appointment_pkey");
-
             entity.ToTable("appointment");
-
             entity.Property(e => e.IdAppointment).HasColumnName("id_appointment");
             entity.Property(e => e.ComplaintsAppointment).HasColumnName("complaints_appointment");
             entity.Property(e => e.CreatedAppointment)
@@ -118,11 +98,8 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<AppointmentStatus>(entity =>
         {
             entity.HasKey(e => e.IdStatus).HasName("appointment_status_pkey");
-
             entity.ToTable("appointment_status");
-
             entity.HasIndex(e => e.NameStatus, "appointment_status_name_status_key").IsUnique();
-
             entity.Property(e => e.IdStatus).HasColumnName("id_status");
             entity.Property(e => e.NameStatus)
                 .HasMaxLength(100)
@@ -132,9 +109,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Cabinet>(entity =>
         {
             entity.HasKey(e => e.IdCabinet).HasName("cabinet_pkey");
-
             entity.ToTable("cabinet");
-
             entity.Property(e => e.IdCabinet).HasColumnName("id_cabinet");
             entity.Property(e => e.IdDepartment).HasColumnName("id_department");
             entity.Property(e => e.NumberCabinet)
@@ -149,23 +124,23 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Department>(entity =>
         {
             entity.HasKey(e => e.IdDepartment).HasName("department_pkey");
-
             entity.ToTable("department");
-
             entity.Property(e => e.IdDepartment).HasColumnName("id_department");
+            entity.Property(e => e.Address).HasColumnName("address");
+            entity.Property(e => e.Description).HasColumnName("description");
             entity.Property(e => e.NameDepartment)
                 .HasMaxLength(200)
                 .HasColumnName("name_department");
+            entity.Property(e => e.Phone)
+                .HasMaxLength(20)
+                .HasColumnName("phone");
         });
 
         modelBuilder.Entity<Doctor>(entity =>
         {
             entity.HasKey(e => e.IdDoctor).HasName("doctor_pkey");
-
             entity.ToTable("doctor");
-
             entity.HasIndex(e => e.IdUser, "doctor_id_user_key").IsUnique();
-
             entity.Property(e => e.IdDoctor).HasColumnName("id_doctor");
             entity.Property(e => e.FirstNameDoctor)
                 .HasMaxLength(100)
@@ -201,9 +176,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<DoctorSchedule>(entity =>
         {
             entity.HasKey(e => e.IdDoctorSchedule).HasName("doctor_schedule_pkey");
-
             entity.ToTable("doctor_schedule");
-
             entity.Property(e => e.IdDoctorSchedule).HasColumnName("id_doctor_schedule");
             entity.Property(e => e.DateSchedule).HasColumnName("date_schedule");
             entity.Property(e => e.EndTimeSchedule).HasColumnName("end_time_schedule");
@@ -228,9 +201,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<ExaminationResult>(entity =>
         {
             entity.HasKey(e => e.IdExaminationResult).HasName("examination_result_pkey");
-
             entity.ToTable("examination_result");
-
             entity.Property(e => e.IdExaminationResult).HasColumnName("id_examination_result");
             entity.Property(e => e.ConclusionExam).HasColumnName("conclusion_exam");
             entity.Property(e => e.IdAppointment).HasColumnName("id_appointment");
@@ -254,9 +225,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Invoice>(entity =>
         {
             entity.HasKey(e => e.IdInvoice).HasName("invoice_pkey");
-
             entity.ToTable("invoice");
-
             entity.Property(e => e.IdInvoice).HasColumnName("id_invoice");
             entity.Property(e => e.DiscountInvoice)
                 .HasPrecision(10, 2)
@@ -294,9 +263,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<LabResearch>(entity =>
         {
             entity.HasKey(e => e.IdLabResearch).HasName("lab_research_pkey");
-
             entity.ToTable("lab_research");
-
             entity.Property(e => e.IdLabResearch).HasColumnName("id_lab_research");
             entity.Property(e => e.CostLabResearch)
                 .HasPrecision(10, 2)
@@ -309,11 +276,8 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<MedicalCard>(entity =>
         {
             entity.HasKey(e => e.IdMedicalCard).HasName("medical_card_pkey");
-
             entity.ToTable("medical_card");
-
             entity.HasIndex(e => e.IdPatient, "medical_card_id_patient_key").IsUnique();
-
             entity.Property(e => e.IdMedicalCard).HasColumnName("id_medical_card");
             entity.Property(e => e.CreatedCard)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
@@ -330,9 +294,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Medication>(entity =>
         {
             entity.HasKey(e => e.IdMedication).HasName("medication_pkey");
-
             entity.ToTable("medication");
-
             entity.Property(e => e.IdMedication).HasColumnName("id_medication");
             entity.Property(e => e.NameMedication)
                 .HasMaxLength(200)
@@ -342,9 +304,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<MedicationPrescription>(entity =>
         {
             entity.HasKey(e => e.IdPrescription).HasName("medication_prescription_pkey");
-
             entity.ToTable("medication_prescription");
-
             entity.Property(e => e.IdPrescription).HasColumnName("id_prescription");
             entity.Property(e => e.DosagePrescription)
                 .HasMaxLength(200)
@@ -368,9 +328,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Patient>(entity =>
         {
             entity.HasKey(e => e.IdPatient).HasName("patient_pkey");
-
             entity.ToTable("patient");
-
             entity.Property(e => e.IdPatient).HasColumnName("id_patient");
             entity.Property(e => e.BirthDatePatient).HasColumnName("birth_date_patient");
             entity.Property(e => e.CreatedPatient)
@@ -394,11 +352,8 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<PaymentStatus>(entity =>
         {
             entity.HasKey(e => e.IdPaymentStatus).HasName("payment_status_pkey");
-
             entity.ToTable("payment_status");
-
             entity.HasIndex(e => e.NamePaymentStatus, "payment_status_name_payment_status_key").IsUnique();
-
             entity.Property(e => e.IdPaymentStatus).HasColumnName("id_payment_status");
             entity.Property(e => e.NamePaymentStatus)
                 .HasMaxLength(100)
@@ -408,11 +363,8 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<PaymentType>(entity =>
         {
             entity.HasKey(e => e.IdPaymentType).HasName("payment_type_pkey");
-
             entity.ToTable("payment_type");
-
             entity.HasIndex(e => e.NamePaymentType, "payment_type_name_payment_type_key").IsUnique();
-
             entity.Property(e => e.IdPaymentType).HasColumnName("id_payment_type");
             entity.Property(e => e.NamePaymentType)
                 .HasMaxLength(100)
@@ -422,9 +374,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<ResearchReferral>(entity =>
         {
             entity.HasKey(e => e.IdReferral).HasName("research_referral_pkey");
-
             entity.ToTable("research_referral");
-
             entity.Property(e => e.IdReferral).HasColumnName("id_referral");
             entity.Property(e => e.IdAppointment).HasColumnName("id_appointment");
             entity.Property(e => e.IdLabResearch).HasColumnName("id_lab_research");
@@ -447,9 +397,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Review>(entity =>
         {
             entity.HasKey(e => e.IdReview).HasName("review_pkey");
-
             entity.ToTable("review");
-
             entity.Property(e => e.IdReview).HasColumnName("id_review");
             entity.Property(e => e.CommentReview).HasColumnName("comment_review");
             entity.Property(e => e.CreatedReview)
@@ -480,11 +428,8 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Role>(entity =>
         {
             entity.HasKey(e => e.IdRole).HasName("role_pkey");
-
             entity.ToTable("role");
-
             entity.HasIndex(e => e.NameRole, "role_name_role_key").IsUnique();
-
             entity.Property(e => e.IdRole).HasColumnName("id_role");
             entity.Property(e => e.NameRole)
                 .HasMaxLength(100)
@@ -494,9 +439,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Service>(entity =>
         {
             entity.HasKey(e => e.IdService).HasName("service_pkey");
-
             entity.ToTable("service");
-
             entity.Property(e => e.IdService).HasColumnName("id_service");
             entity.Property(e => e.CostService)
                 .HasPrecision(10, 2)
@@ -517,11 +460,8 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<ServiceType>(entity =>
         {
             entity.HasKey(e => e.IdServiceType).HasName("service_type_pkey");
-
             entity.ToTable("service_type");
-
             entity.HasIndex(e => e.NameServiceType, "service_type_name_service_type_key").IsUnique();
-
             entity.Property(e => e.IdServiceType).HasColumnName("id_service_type");
             entity.Property(e => e.NameServiceType)
                 .HasMaxLength(200)
@@ -531,9 +471,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<SpecialistSchedule>(entity =>
         {
             entity.HasKey(e => e.IdSpecialistSchedule).HasName("specialist_schedule_pkey");
-
             entity.ToTable("specialist_schedule");
-
             entity.Property(e => e.IdSpecialistSchedule).HasColumnName("id_specialist_schedule");
             entity.Property(e => e.DayOfWeekSchedule).HasColumnName("day_of_week_schedule");
             entity.Property(e => e.EndTimeSchedule).HasColumnName("end_time_schedule");
@@ -549,11 +487,8 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Specialization>(entity =>
         {
             entity.HasKey(e => e.IdSpecialization).HasName("specialization_pkey");
-
             entity.ToTable("specialization");
-
             entity.HasIndex(e => e.NameSpecialization, "specialization_name_specialization_key").IsUnique();
-
             entity.Property(e => e.IdSpecialization).HasColumnName("id_specialization");
             entity.Property(e => e.NameSpecialization)
                 .HasMaxLength(200)
@@ -563,11 +498,8 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.IdUser).HasName("user_pkey");
-
             entity.ToTable("user");
-
             entity.HasIndex(e => e.LoginUser, "user_login_user_key").IsUnique();
-
             entity.Property(e => e.IdUser).HasColumnName("id_user");
             entity.Property(e => e.IdRole).HasColumnName("id_role");
             entity.Property(e => e.LoginUser)
@@ -581,6 +513,21 @@ public partial class AppDbContext : DbContext
                 .HasForeignKey(d => d.IdRole)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("user_id_role_fkey");
+        });
+
+        // ==========================================================
+        // НАСТРОЙКА НАШЕГО МОДУЛЯ ПОСТАВЩИКОВ
+        // ==========================================================
+        modelBuilder.Entity<Supplier>(entity =>
+        {
+            entity.HasKey(e => e.IdSupplier).HasName("supplier_pkey");
+            entity.ToTable("supplier");
+            entity.Property(e => e.IdSupplier).HasColumnName("id_supplier");
+            entity.Property(e => e.OrganizationName).HasMaxLength(200).HasColumnName("organization_name");
+            entity.Property(e => e.ContactPerson).HasMaxLength(100).HasColumnName("contact_person");
+            entity.Property(e => e.Phone).HasMaxLength(20).HasColumnName("phone");
+            entity.Property(e => e.Address).HasMaxLength(300).HasColumnName("address");
+            entity.Property(e => e.Email).HasMaxLength(100).HasColumnName("email");
         });
 
         OnModelCreatingPartial(modelBuilder);

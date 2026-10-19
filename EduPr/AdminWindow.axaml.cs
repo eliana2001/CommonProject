@@ -12,6 +12,7 @@ public partial class AdminWindow : Window
     {
         InitializeComponent();
     }
+
     private void LogButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         var mainW = new MainWindow();
@@ -23,15 +24,17 @@ public partial class AdminWindow : Window
     {
         MainContentControl.Content = new PatientList();
     }
+
     private void BtnAppoints_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         MainContentControl.Content = new AppointmentList();
-
     }
+
     private void BtnPayments_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         MainContentControl.Content = new PaymentsList();
     }
+
     private void BtnReviews_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         MainContentControl.Content = new ReviewList();
@@ -40,5 +43,14 @@ public partial class AdminWindow : Window
     private void BtnEquipment_Click(object? sender, RoutedEventArgs e)
     {
         MainContentControl.Content = new EquipmentList();
+    private void BtnAppeals_Click(
+    object? sender,
+    Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        MainContentControl.Content = new PatientAppealsControl();
+
+    private void BtnSuppliers_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        MainContentControl.Content = new SupplierControl();
     }
 }

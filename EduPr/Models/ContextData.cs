@@ -14,5 +14,6 @@ namespace EduPr.Models
         public static Patient SelectedPatient { get; set; }
         public static bool isNewPatient { get; set; }
         public static Doctor SelectedDoctor { get; set; }
+        public static Department? SelectedDepartment { get; set; }
     }
 }

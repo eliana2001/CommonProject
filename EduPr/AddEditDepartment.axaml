@@ -1,0 +1,27 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="300"
+        x:Class="EduPr.AddEditDepartment"
+        Title="Отдел">
+	<Grid Background="#f5fff9" RowDefinitions="Auto,*,Auto" Margin="20">
+		<TextBlock x:Name="titleTb" Grid.Row="0" Text="Отдел" FontSize="22" FontWeight="Bold" Foreground="#e65100" HorizontalAlignment="Center" Margin="0 0 0 20"/>
+		<StackPanel Grid.Row="1" Spacing="10">
+			<TextBlock Text="Название отдела" FontSize="14"/>
+			<TextBox x:Name="nameDepartmentTb" Watermark="Введите название отдела" Padding="10" BorderBrush="#bbeaff"/>
+				<TextBlock Text="Описание" FontSize="14"/>
+			<TextBox x:Name="descriptionTb" Watermark="Введите описание" Padding="10" BorderBrush="#bbeaff"/>
+				<TextBlock Text="Адрес" FontSize="14"/>
+			<TextBox x:Name="addressTb" Watermark="Введите адрес" Padding="10" BorderBrush="#bbeaff"/>
+				<TextBlock Text="Номер телефона" FontSize="14"/>
+			<TextBox x:Name="phoneTb" Watermark="Введите номер телефона" Padding="10" BorderBrush="#bbeaff"/>
+			<TextBlock x:Name="errorTb" Foreground="Red" TextWrapping="Wrap"/>
+		</StackPanel>
+		<Grid Grid.Row="2" ColumnDefinitions="*,*,*" Margin="0 20 0 0">
+			<Button x:Name="deleteBtn" Grid.Column="0" Content="Удалить" Padding="10" Background="#ffebee" Foreground="#c62828" BorderBrush="#c62828" Click="DeleteDepartment_Click"/>
+			<Button Grid.Column="1" Content="Отмена" Margin="5 0" Padding="10" Background="#fff3e0" Foreground="#e65100" BorderBrush="#e65100" Click="Cancel_Click"/>
+			<Button Grid.Column="2" Content="Сохранить" Padding="10" Background="#e65100" Foreground="#fff3e0" BorderBrush="#e65100" Click="SaveDepartment_Click"/>
+		</Grid>
+	</Grid>
+</Window>

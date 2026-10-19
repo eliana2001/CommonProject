@@ -17,13 +17,15 @@
 			</Grid>
 		</Border>
 		<Border Grid.Row="1" Background="#ffffff" BorderBrush="#e0e0e0" BorderThickness=" 0 0 0 1" >
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" >
+			<WrapPanel HorizontalAlignment="Center">
 				<Button x:Name="btnPatients" Content="Пациенты" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15"  FontWeight="Bold" BorderBrush="#e65100" Click="BtnPatients_Click"></Button>
 				<Button x:Name="btnAppoints" Content="История посещений" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15" FontWeight="Bold" BorderBrush="#e65100" Click="BtnAppoints_Click"></Button>
 				<Button x:Name="btnPayments" Content="Счета/оплата" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15" FontWeight="Bold" BorderBrush="#e65100" Click="BtnPayments_Click"></Button>
 				<Button x:Name="btnReviews" Content="Отзывы наших клиентов" Background="#fff3e0" Foreground="#e65100"  Padding="16" FontSize="15" FontWeight="Bold" BorderBrush="#e65100" Click="BtnReviews_Click"></Button>
 				<Button Content="Оборудование" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15" FontWeight="Bold" BorderBrush="#e65100" Click="BtnEquipment_Click"/>
-			</StackPanel>
+				<Button x:Name="btnAppeals" Content="Обращения" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15" FontWeight="Bold" BorderBrush="#e65100" Margin="5" Click="BtnAppeals_Click"/>
+        <Button x:Name="btnSuppliers" Content="Поставщики" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15" FontWeight="Bold" BorderBrush="#e65100" BorderThickness="1" Click="BtnSuppliers_Click"/>
+			</WrapPanel>
 		</Border>
 		<Border Grid.Row="2" Margin="20">
 			<ContentControl x:Name="MainContentControl"/>
