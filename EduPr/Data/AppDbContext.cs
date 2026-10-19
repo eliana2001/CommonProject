@@ -45,7 +45,8 @@ public partial class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-=> optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=\"EducPractice\";Username=postgres;Password=12345");
+        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=EducPractice;Username=postgres;Password=75300067");
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Appointment>(entity =>
@@ -125,9 +126,14 @@ public partial class AppDbContext : DbContext
             entity.HasKey(e => e.IdDepartment).HasName("department_pkey");
             entity.ToTable("department");
             entity.Property(e => e.IdDepartment).HasColumnName("id_department");
+            entity.Property(e => e.Address).HasColumnName("address");
+            entity.Property(e => e.Description).HasColumnName("description");
             entity.Property(e => e.NameDepartment)
                 .HasMaxLength(200)
                 .HasColumnName("name_department");
+            entity.Property(e => e.Phone)
+                .HasMaxLength(20)
+                .HasColumnName("phone");
         });
 
         modelBuilder.Entity<Doctor>(entity =>
