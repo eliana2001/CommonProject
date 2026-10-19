@@ -1,0 +1,18 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="EduPr.EquipmentEditWindow"
+        Title="Оборудование" Width="420" SizeToContent="Height" WindowStartupLocation="CenterOwner">
+  <StackPanel Margin="20" Spacing="6"> 
+    <TextBlock Text="Название"/> <TextBox x:Name="tbName"/>
+    <TextBlock Text="Инв. номер"/> <TextBox x:Name="tbInv"/>
+    <TextBlock Text="Кабинет"/> <ComboBox x:Name="cbCabinet" HorizontalAlignment="Stretch"/>
+    <TextBlock Text="Состояние"/> <ComboBox x:Name="cbStatus" HorizontalAlignment="Stretch"/>
+        <TextBlock Text="Последнее ТО"/> <CalendarDatePicker x:Name="dpLast"/>
+    <TextBlock Text="Следующее ТО"/> <CalendarDatePicker x:Name="dpNext"/>
+    <TextBlock x:Name="lblError" Foreground="Red"/> 
+    <Button Content="Сохранить" Click="BtnSave_Click"/>
+  </StackPanel>
+</Window>

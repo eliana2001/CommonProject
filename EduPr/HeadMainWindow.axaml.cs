@@ -41,4 +41,9 @@ public partial class HeadMainWindow : Window
         mainW.Show();
         this.Close();
     }
+
+    private void BtnEquipment_Click(object? sender, RoutedEventArgs e)
+    {
+        MainContentControl.Content = new EquipmentList();
+    }
 }
