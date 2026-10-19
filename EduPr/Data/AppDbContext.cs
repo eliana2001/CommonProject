@@ -153,9 +153,14 @@ public partial class AppDbContext : DbContext
             entity.ToTable("department");
 
             entity.Property(e => e.IdDepartment).HasColumnName("id_department");
+            entity.Property(e => e.Address).HasColumnName("address");
+            entity.Property(e => e.Description).HasColumnName("description");
             entity.Property(e => e.NameDepartment)
                 .HasMaxLength(200)
                 .HasColumnName("name_department");
+            entity.Property(e => e.Phone)
+                .HasMaxLength(20)
+                .HasColumnName("phone");
         });
 
         modelBuilder.Entity<Doctor>(entity =>

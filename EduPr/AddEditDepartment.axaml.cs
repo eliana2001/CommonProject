@@ -28,12 +28,18 @@ public partial class AddEditDepartment : Window
             var department = context.Departments.FirstOrDefault(d => d.IdDepartment == _departmentId);
             if (department != null)
                 nameDepartmentTb.Text = department.NameDepartment;
+                descriptionTb.Text = department.Description;
+                addressTb.Text = department.Address;
+                phoneTb.Text = department.Phone;
         }
     }
 
     private async void SaveDepartment_Click(object? sender, RoutedEventArgs e)
     {
         var name = nameDepartmentTb.Text?.Trim();
+        var description = descriptionTb.Text?.Trim();
+        var address = addressTb.Text?.Trim();
+        var phone = phoneTb.Text?.Trim();
         if (string.IsNullOrWhiteSpace(name))
         {
             errorTb.Text = "Введите название отдела";
@@ -49,7 +55,7 @@ public partial class AddEditDepartment : Window
         }
 
         if (_departmentId == 0)
-            context.Departments.Add(new Department { NameDepartment = name });
+            context.Departments.Add(new Department { NameDepartment = name, Description =  description, Address = address, Phone = phone});
         else
         {
             var department = context.Departments.FirstOrDefault(d => d.IdDepartment == _departmentId);
@@ -59,6 +65,9 @@ public partial class AddEditDepartment : Window
                 return;
             }
             department.NameDepartment = name;
+            department.Description = description;
+            department.Address = address;
+            department.Phone = phone;
         }
 
         await context.SaveChangesAsync();

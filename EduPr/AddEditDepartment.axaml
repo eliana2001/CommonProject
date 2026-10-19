@@ -10,6 +10,12 @@
 		<StackPanel Grid.Row="1" Spacing="10">
 			<TextBlock Text="Название отдела" FontSize="14"/>
 			<TextBox x:Name="nameDepartmentTb" Watermark="Введите название отдела" Padding="10" BorderBrush="#bbeaff"/>
+				<TextBlock Text="Описание" FontSize="14"/>
+			<TextBox x:Name="descriptionTb" Watermark="Введите описание" Padding="10" BorderBrush="#bbeaff"/>
+				<TextBlock Text="Адрес" FontSize="14"/>
+			<TextBox x:Name="addressTb" Watermark="Введите адрес" Padding="10" BorderBrush="#bbeaff"/>
+				<TextBlock Text="Номер телефона" FontSize="14"/>
+			<TextBox x:Name="phoneTb" Watermark="Введите номер телефона" Padding="10" BorderBrush="#bbeaff"/>
 			<TextBlock x:Name="errorTb" Foreground="Red" TextWrapping="Wrap"/>
 		</StackPanel>
 		<Grid Grid.Row="2" ColumnDefinitions="*,*,*" Margin="0 20 0 0">

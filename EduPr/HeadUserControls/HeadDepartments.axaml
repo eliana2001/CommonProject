@@ -16,6 +16,9 @@
 				<DataGrid.Columns>
 					<DataGridTextColumn Header="ID" Binding="{Binding IdDepartment}" Width="80"/>
 					<DataGridTextColumn Header="Название отдела" Binding="{Binding NameDepartment}" Width="*"/>
+					<DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*"/>
+					<DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="*"/>
+					<DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="*"/>
 				</DataGrid.Columns>
 			</DataGrid>
 		</Border>
