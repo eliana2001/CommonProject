@@ -22,6 +22,7 @@
 				<Button Content="Аналитика" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15"  FontWeight="Bold" BorderBrush="#e65100" Click="BtnAnalytics_Click"></Button>
 				<Button Content="Врачи" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15"  FontWeight="Bold" BorderBrush="#e65100" Click="BtnDoctors_Click"></Button>
 				<Button Content="Расширенная аналитика" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15"  FontWeight="Bold" BorderBrush="#e65100" Click="BtnHeadAdvancedAnalytics_Click"></Button>
+				<Button Content="Обращения" Background="#fff3e0" Foreground="#e65100" Padding="16" FontSize="15" FontWeight="Bold" BorderBrush="#e65100" Click="BtnAppeals_Click"/>
 			</StackPanel>
 		</Border>
 		<ContentControl x:Name="MainContentControl" Grid.Row="2" Margin="20"/>

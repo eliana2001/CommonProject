@@ -37,6 +37,11 @@ public partial class AdminWindow : Window
     {
         MainContentControl.Content = new ReviewList();
     }
+    private void BtnAppeals_Click(
+    object? sender,
+    Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        MainContentControl.Content = new PatientAppealsControl();
 
     // --- НАШ НОВЫЙ МЕТОД ДЛЯ КНОПКИ "ПОСТАВЩИКИ" ---
     private void BtnSuppliers_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

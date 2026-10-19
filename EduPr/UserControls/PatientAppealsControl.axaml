@@ -1,0 +1,297 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="1100"
+             d:DesignHeight="650"
+             x:Class="EduPr.PatientAppealsControl">
+
+	<Grid RowDefinitions="Auto,Auto,2*,3*,Auto"
+          RowSpacing="8">
+
+		<StackPanel Grid.Row="0" Spacing="3">
+			<TextBlock Text="Обращения пациентов"
+                       FontSize="24"
+                       FontWeight="Bold"/>
+			<TextBlock Text="Регистрация, назначение ответственных и контроль сроков рассмотрения."
+                       FontSize="13"
+                       TextWrapping="Wrap"/>
+		</StackPanel>
+
+		<WrapPanel Grid.Row="1" Orientation="Horizontal">
+
+			<TextBox x:Name="SearchBox"
+                     Width="210"
+                     Watermark="Поиск по обращению или пациенту"
+                     TextChanged="Search_TextChanged"
+                     Margin="0,0,8,8"/>
+
+			<ComboBox x:Name="TypeFilter"
+                      Width="125"
+                      Margin="0,0,8,8"
+                      SelectionChanged="Filter_SelectionChanged"/>
+
+			<ComboBox x:Name="CategoryFilter"
+                      Width="155"
+                      Margin="0,0,8,8"
+                      SelectionChanged="Filter_SelectionChanged"/>
+
+			<ComboBox x:Name="StatusFilter"
+                      Width="140"
+                      Margin="0,0,8,8"
+                      SelectionChanged="Filter_SelectionChanged"/>
+
+			<ComboBox x:Name="DeadlineFilter"
+                      Width="150"
+                      Margin="0,0,8,8"
+                      SelectionChanged="Filter_SelectionChanged"/>
+
+			<Button Content="Обновить"
+                    Click="Refresh_Click"
+                    Margin="0,0,8,8"
+                    Padding="12,7"/>
+
+			<Button Content="Новое обращение"
+                    Click="NewAppeal_Click"
+                    Margin="0,0,8,8"
+                    Padding="12,7"/>
+
+		</WrapPanel>
+
+		<DataGrid x:Name="AppealsGrid"
+                  Grid.Row="2"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  GridLinesVisibility="Horizontal"
+                  SelectionMode="Single"
+                  SelectionChanged="AppealsGrid_SelectionChanged">
+
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="№"
+                                    Binding="{Binding IdAppeal}"
+                                    Width="55"/>
+
+				<DataGridTextColumn Header="Дата регистрации"
+                                    Binding="{Binding CreatedText}"
+                                    Width="135"/>
+
+				<DataGridTextColumn Header="Пациент"
+                                    Binding="{Binding PatientName}"
+                                    Width="160"/>
+
+				<DataGridTextColumn Header="Тема"
+                                    Binding="{Binding SubjectAppeal}"
+                                    Width="2*"/>
+
+				<DataGridTextColumn Header="Тип"
+                                    Binding="{Binding TypeAppeal}"
+                                    Width="105"/>
+
+				<DataGridTextColumn Header="Категория"
+                                    Binding="{Binding CategoryAppeal}"
+                                    Width="135"/>
+
+				<DataGridTextColumn Header="Статус"
+                                    Binding="{Binding StatusAppeal}"
+                                    Width="125"/>
+
+				<DataGridTextColumn Header="Срок"
+                                    Binding="{Binding DueDateText}"
+                                    Width="100"/>
+
+				<DataGridTextColumn Header="Ответственный"
+                                    Binding="{Binding ResponsibleName}"
+                                    Width="140"/>
+			</DataGrid.Columns>
+
+		</DataGrid>
+
+		<Grid Grid.Row="3"
+              ColumnDefinitions="3*,2*"
+              ColumnSpacing="10">
+
+			<Border Grid.Column="0"
+                    Background="White"
+                    BorderBrush="#DDDDDD"
+                    BorderThickness="1"
+                    Padding="10">
+
+				<ScrollViewer VerticalScrollBarVisibility="Auto">
+					<StackPanel Spacing="8">
+
+						<TextBlock Text="Карточка обращения"
+                                   FontSize="18"
+                                   FontWeight="Bold"/>
+
+						<Grid ColumnDefinitions="110,*"
+                              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                              ColumnSpacing="8"
+                              RowSpacing="6">
+
+							<TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="Пациент"
+                                       VerticalAlignment="Center"/>
+
+							<ComboBox x:Name="PatientComboBox"
+                                      Grid.Row="0"
+                                      Grid.Column="1"
+                                      MinHeight="32"/>
+
+							<TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="Тип"
+                                       VerticalAlignment="Center"/>
+
+							<ComboBox x:Name="TypeComboBox"
+                                      Grid.Row="1"
+                                      Grid.Column="1"
+                                      MinHeight="32"/>
+
+							<TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="Категория"
+                                       VerticalAlignment="Center"/>
+
+							<ComboBox x:Name="CategoryComboBox"
+                                      Grid.Row="2"
+                                      Grid.Column="1"
+                                      MinHeight="32"/>
+
+							<TextBlock Grid.Row="3"
+                                       Grid.Column="0"
+                                       Text="Тема"
+                                       VerticalAlignment="Center"/>
+
+							<TextBox x:Name="SubjectTextBox"
+                                     Grid.Row="3"
+                                     Grid.Column="1"
+                                     Watermark="Краткая тема обращения"/>
+
+							<TextBlock Grid.Row="4"
+                                       Grid.Column="0"
+                                       Text="Описание"
+                                       VerticalAlignment="Top"/>
+
+							<TextBox x:Name="DescriptionTextBox"
+                                     Grid.Row="4"
+                                     Grid.Column="1"
+                                     Height="65"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     Watermark="Подробное описание обращения"/>
+
+							<TextBlock Grid.Row="5"
+                                       Grid.Column="0"
+                                       Text="Статус"
+                                       VerticalAlignment="Center"/>
+
+							<ComboBox x:Name="StatusComboBox"
+                                      Grid.Row="5"
+                                      Grid.Column="1"
+                                      MinHeight="32"/>
+
+							<TextBlock Grid.Row="6"
+                                       Grid.Column="0"
+                                       Text="Ответственный"
+                                       VerticalAlignment="Center"/>
+
+							<ComboBox x:Name="ResponsibleComboBox"
+                                      Grid.Row="6"
+                                      Grid.Column="1"
+                                      MinHeight="32"/>
+
+							<TextBlock Grid.Row="7"
+                                       Grid.Column="0"
+                                       Text="Срок рассмотрения"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"/>
+
+							<DatePicker x:Name="DueDatePicker"
+                                        Grid.Row="7"
+                                        Grid.Column="1"/>
+
+						</Grid>
+
+						<Button Content="Сохранить обращение"
+                                Click="SaveAppeal_Click"
+                                HorizontalAlignment="Stretch"
+                                Padding="12,8"/>
+
+					</StackPanel>
+				</ScrollViewer>
+
+			</Border>
+
+			<Border Grid.Column="1"
+                    Background="White"
+                    BorderBrush="#DDDDDD"
+                    BorderThickness="1"
+                    Padding="10">
+
+				<Grid RowDefinitions="Auto,*,Auto,Auto"
+                      RowSpacing="8">
+
+					<TextBlock Grid.Row="0"
+                               Text="История взаимодействия"
+                               FontSize="18"
+                               FontWeight="Bold"/>
+
+					<ListBox x:Name="HistoryList"
+                             Grid.Row="1">
+
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Border BorderBrush="#EEEEEE"
+                                        BorderThickness="0,0,0,1"
+                                        Padding="5">
+
+									<StackPanel Spacing="3">
+
+										<TextBlock Text="{Binding ActionHistory}"
+                                                   FontWeight="Bold"/>
+
+										<TextBlock Text="{Binding CreatedHistory}"
+                                                   FontSize="11"/>
+
+										<TextBlock Text="{Binding IdUserNavigation.LoginUser}"
+                                                   FontSize="11"/>
+
+										<TextBlock Text="{Binding DetailsHistory}"
+                                                   TextWrapping="Wrap"/>
+
+									</StackPanel>
+
+								</Border>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+
+					</ListBox>
+
+					<TextBox x:Name="CommentTextBox"
+                             Grid.Row="2"
+                             Height="65"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             Watermark="Комментарий или результат взаимодействия"/>
+
+					<Button Grid.Row="3"
+                            Content="Добавить комментарий в историю"
+                            Click="AddComment_Click"
+                            Padding="10,7"/>
+
+				</Grid>
+
+			</Border>
+
+		</Grid>
+
+		<TextBlock x:Name="StatusTextBlock"
+                   Grid.Row="4"
+                   TextWrapping="Wrap"
+                   FontSize="12"/>
+
+	</Grid>
+
+</UserControl>
