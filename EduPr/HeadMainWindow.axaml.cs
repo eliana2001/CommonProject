@@ -30,6 +30,10 @@ public partial class HeadMainWindow : Window
         MainContentControl.Content = new HeadDepartments();
     }
 
+    private void BtnAppeals_Click(object? sender, RoutedEventArgs e)
+    {
+        MainContentControl.Content = new PatientAppealsControl();
+    }
 
     private void BtnLogout_Click(object? sender, RoutedEventArgs e)
     {
