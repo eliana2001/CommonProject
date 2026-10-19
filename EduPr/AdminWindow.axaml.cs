@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+
 
 namespace EduPr;
 
@@ -33,5 +35,10 @@ public partial class AdminWindow : Window
     private void BtnReviews_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         MainContentControl.Content = new ReviewList();
+    }
+
+    private void BtnEquipment_Click(object? sender, RoutedEventArgs e)
+    {
+        MainContentControl.Content = new EquipmentList();
     }
 }
